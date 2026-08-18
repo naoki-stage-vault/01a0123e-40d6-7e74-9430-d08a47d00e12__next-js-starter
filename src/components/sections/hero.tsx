@@ -7,20 +7,17 @@ import { DeviceMock } from "@/components/ui/product-render";
 import { Reveal } from "@/components/ui/reveal";
 
 /**
- * Hero — superficie clara (product-tile-light).
- * Headline en {typography.hero-display} (56px) que se colapsa según el
- * spec: 40px a <=1068px, 34px a <=640px, 28px a <=419px.
- * CTA principal en {component.button-primary} (pill). El device-mock
- * demuestra la ÚNICA sombra del sistema sobre imagen de producto.
+ * Hero — {component.product-tile-light}. El stack del spec:
+ * badge de contexto -> headline {typography.hero-display} (56px, colapsa
+ * 40/34/28 según breakpoints) -> tagline -> CTA primary pill -> render de
+ * producto reposando con la ÚNICA sombra del sistema.
  */
 export function Hero() {
   return (
     <ProductTileLight id="top">
       <div className="mx-auto flex max-w-[980px] flex-col items-center px-6 text-center">
         <Reveal>
-          <Badge variant="outline" className="uppercase tracking-[0.14em]">
-            Design system · YAML/Markdown · apple.com
-          </Badge>
+          <Badge variant="secondary">Design system · YAML · Extraído de apple.com</Badge>
         </Reveal>
         <Reveal delay={0.08}>
           <HeroDisplay className="mt-6 max-sm:text-[34px] max-sm:tracking-[-0.374px] max-[419px]:text-[28px] max-[419px]:tracking-[-0.28px] max-xl:text-[40px] max-xl:tracking-0">
@@ -43,7 +40,7 @@ export function Hero() {
           </div>
         </Reveal>
         <Reveal delay={0.32}>
-          <DeviceMock className="mt-16 max-w-xl" />
+          <DeviceMock className="mt-16 max-w-[620px]" />
         </Reveal>
       </div>
     </ProductTileLight>
