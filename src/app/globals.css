@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens — single source of truth: DESIGN-apple.md
+ * Breakpoints replace Tailwind defaults entirely: 480/640/734/833/1068/1440.
+ */
+@theme {
+  /* 4.1 Breakpoints (exact) — replace defaults */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 734px;
+  --breakpoint-lg: 833px;
+  --breakpoint-xl: 1068px;
+  --breakpoint-2xl: 1440px;
+
+  /* 1.1 Color */
+  --color-action-blue: #0066cc;
+  --color-ink: #1d1d1f;
+  --color-ink-secondary: #6e6e73;
+  --color-canvas: #ffffff;
+  --color-canvas-parchment: #f5f5f7;
+  --color-tile-dark: #272729;
+  --color-tile-dark-2: #2a2a2c;
+  --color-tile-dark-3: #252527;
+  --color-white-72: rgba(255, 255, 255, 0.72);
+
+  /* 1.2 Typography — SF Pro via system stack (SF Pro is not web-licensed) */
+  --font-display:
+    "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-text:
+    "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* 1.4 Radius */
+  --radius-pill: 980px;
+  --radius-image: 24px;
+
+  /* 1.5 Shadow — the only shadow in the system */
+  --shadow-product: 3px 5px 30px rgba(0, 0, 0, 0.22);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 1.2 Typography — base */
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-text);
+    font-size: 17px; /* never 16px */
+    font-weight: 400; /* never 500 */
+    line-height: 1.47;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-action-blue) 25%, transparent);
+  }
 }
